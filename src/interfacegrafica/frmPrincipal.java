@@ -33,6 +33,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuArq = new javax.swing.JMenu();
+        menuAgenda = new javax.swing.JMenuItem();
         menuCad = new javax.swing.JMenuItem();
         menuSair = new javax.swing.JMenuItem();
         menuApl = new javax.swing.JMenu();
@@ -66,6 +67,14 @@ public class frmPrincipal extends javax.swing.JFrame {
         );
 
         menuArq.setText("Arquivo");
+
+        menuAgenda.setText("Agenda");
+        menuAgenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuAgendaActionPerformed(evt);
+            }
+        });
+        menuArq.add(menuAgenda);
 
         menuCad.setText("Cadastrar");
         menuCad.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +150,11 @@ public class frmPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_menuSairActionPerformed
 
+    private void menuAgendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuAgendaActionPerformed
+         frmAgenda agenda = new frmAgenda();
+         agenda.setVisible(true);
+    }//GEN-LAST:event_menuAgendaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -181,6 +195,7 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem menuAgenda;
     private javax.swing.JMenu menuApl;
     private javax.swing.JMenu menuArq;
     private javax.swing.JMenuItem menuCad;
