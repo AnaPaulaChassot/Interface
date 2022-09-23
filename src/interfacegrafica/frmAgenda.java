@@ -5,6 +5,7 @@
  */
 package interfacegrafica;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -80,6 +81,11 @@ public class frmAgenda extends javax.swing.JFrame {
 
         btnExcluir.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnAtualizar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnAtualizar.setText("Atualizar");
@@ -154,6 +160,17 @@ public class frmAgenda extends javax.swing.JFrame {
         dtmAgenda.addRow(dados);
         
     }//GEN-LAST:event_btnInserirActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+       
+        if (tbLista.getSelectedRow() != -1){
+            DefaultTableModel dtmAgenda = (DefaultTableModel) tbLista.getModel();
+            dtmAgenda.removeRow(tbLista.getSelectedRow());
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione uma Linha!");
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
