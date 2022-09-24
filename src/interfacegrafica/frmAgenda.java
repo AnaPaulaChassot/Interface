@@ -69,6 +69,11 @@ public class frmAgenda extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tbLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbListaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbLista);
 
         btnInserir.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -89,6 +94,11 @@ public class frmAgenda extends javax.swing.JFrame {
 
         btnAtualizar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         try {
             txtTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) # ####-####")));
@@ -162,8 +172,8 @@ public class frmAgenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInserirActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-       
-        if (tbLista.getSelectedRow() != -1){
+       // Botão excluir
+        if (tbLista.getSelectedRow() != -1){ // Começa a lista no 0, se não tiver não faz
             DefaultTableModel dtmAgenda = (DefaultTableModel) tbLista.getModel();
             dtmAgenda.removeRow(tbLista.getSelectedRow());
             
@@ -171,6 +181,24 @@ public class frmAgenda extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione uma Linha!");
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void tbListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListaMouseClicked
+       // clique do mouse na tabela
+        if (tbLista.getSelectedRow() != -1){ // tabela começa lista no 0, tem que estar selecionado
+            txtNome.setText(tbLista.getValueAt(tbLista.getSelectedRow(), 0).toString()); //Tras com set da linha para o texto Nome 0 quando selecionado, como String
+            txtTelefone.setText(tbLista.getValueAt(tbLista.getSelectedRow(), 1).toString()); // Tras da linha para o texto telefone 1, Como String
+        }
+        
+    }//GEN-LAST:event_tbListaMouseClicked
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        
+        if (tbLista.getSelectedRow() != -1){
+            tbLista.setValueAt(txtNome.getText(), tbLista.getSelectedRow(),0); // Pega conteudo do texto e insere na lista, primeira posição 0
+            tbLista.setValueAt(txtTelefone.getText(), tbLista.getSelectedRow(),1);
+        }
+        
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
